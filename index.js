@@ -67,7 +67,7 @@ function getHighestMetascore(movies) {
       highestMetaScore = movies[i].metascore
     }
   }
-  return highestMetaScore;
+  return Number(highestMetaScore);
 }
 
 console.log(getHighestMetascore(exampleMovies));
@@ -83,7 +83,21 @@ console.log(getHighestMetascore(exampleMovies));
  *  getAverageIMDBRating(movies);
  *  //> 7.76
  */
-function getAverageIMDBRating() {}
+
+//get an average all of the IMDB ratings
+//access imdb rating by movies[0].imdbRating
+//get total first, then divide by the amount of mvovies in the list
+function getAverageIMDBRating(movies) {
+  let grandIMDBtotal = 0;
+  //loop through each movie
+  for (const eachMovie of movies) {
+    grandIMDBtotal += Number(eachMovie.imdbRating);
+  }
+  let average = grandIMDBtotal/movies.length;
+  return Number(average.toFixed(2));
+}
+
+console.log(getAverageIMDBRating(exampleMovies));
 
 /**
  * countByRating()
