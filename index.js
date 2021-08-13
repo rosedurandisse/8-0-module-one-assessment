@@ -271,13 +271,26 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, givenYear) {
 //return the name of the movie with the highest box office amount
 //issue is that the box office is a string with a dollar sign and commas
 // take off the dollar sign by slice(1)
+//this is the method to update the string to be a number without dollar signs and commas
+let noDollarSign = exampleMovies[0].boxOffice.slice(1).replace(/,/g, '');
+// let noCommas = noDollarSign.replace(/,/g, '');
+// console.log(Number(noDollarSign));
 
-let noDollarSign = exampleMovies[0].boxOffice.slice(1);
-let noCommas = noDollarSign.replace(/,/g, '');
-console.log(Number(noCommas));
+function getBiggestBoxOfficeMovie(movies) {
+  if (movies.length === 0) {
+    return null;
+  }
+  let highestBoxValue = Number(movies[0].boxOffice.slice(1).replace(/,/g, ''));
+  let topGrossingMovie = movies[0].title;
+  for (let i = 0; i < movies.length; i++) {
+    if (Number(movies[i].boxOffice.slice(1).replace(/,/g, '')) > highestBoxValue) {
+      highestBoxValue = Number(movies[i].boxOffice.slice(1).replace(/,/g, ''))
+      topGrossingMovie = movies[i].title;
+    }
+  }
+  return topGrossingMovie;
+}
 
-
-function getBiggestBoxOfficeMovie() {}
 
 // Do not change anything below this line.
 module.exports = {
