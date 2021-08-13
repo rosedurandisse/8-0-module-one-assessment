@@ -60,6 +60,9 @@ function getAllMovieTitles(movies) {
 //if there is a metascore that is higher than it should be the new default value
 //thing to note is that the metascore value is a string
 function getHighestMetascore(movies) {
+  if (movies.length === 0) {
+    return 0;
+  }
   let highestMetaScore = movies[0].metascore;
   //loop through the array to compare metascores
   for (let i = 0; i < movies.length; i++) {
@@ -70,7 +73,7 @@ function getHighestMetascore(movies) {
   return Number(highestMetaScore);
 }
 
-console.log(getHighestMetascore(exampleMovies));
+// console.log(getHighestMetascore(exampleMovies));
 
 /**
  * getAverageIMDBRating()
@@ -88,6 +91,9 @@ console.log(getHighestMetascore(exampleMovies));
 //access imdb rating by movies[0].imdbRating
 //get total first, then divide by the amount of mvovies in the list
 function getAverageIMDBRating(movies) {
+  if (movies.length === 0) {
+    return 0;
+  }
   let grandIMDBtotal = 0;
   //loop through each movie
   for (const eachMovie of movies) {
@@ -97,7 +103,7 @@ function getAverageIMDBRating(movies) {
   return Number(average.toFixed(2));
 }
 
-console.log(getAverageIMDBRating(exampleMovies));
+// console.log(getAverageIMDBRating(exampleMovies));
 
 /**
  * countByRating()
@@ -110,8 +116,31 @@ console.log(getAverageIMDBRating(exampleMovies));
  *  countByRating(movies);
  *  //> { G: 3, PG: 7 }
  */
-function countByRating() {}
+//create a new object
+//the keys are movie ratings
+//the values are the number of movies with the rating
+//determine if the rating key exists, if it doesn't create one and have the value = 1
+//if the rating key does exist, add one to its value
+//access the ratings as movies[i].rated
+function countByRating(movies) {
+  if (movies.length === 0) {
+    return {};
+  }
+  //create an empty object
+  let ratingCount = {};
+  //loop through the movies
+  for (let i = 0; i < movies.length; i++) {
+    let movieRated = movies[i].rated;
+    if (ratingCount[movieRated]){
+      ratingCount[movieRated] += 1;
+    } else {
+      ratingCount[movieRated] = 1;
+    }
+  }
+  return ratingCount;
+}
 
+countByRating(exampleMovies);
 /**
  * findById()
  * -----------------------------
