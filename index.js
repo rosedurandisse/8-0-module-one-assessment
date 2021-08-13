@@ -140,7 +140,7 @@ function countByRating(movies) {
   return ratingCount;
 }
 
-countByRating(exampleMovies);
+// countByRating(exampleMovies);
 /**
  * findById()
  * -----------------------------
@@ -155,7 +155,19 @@ countByRating(exampleMovies);
       // Toy Story 4
     };
  */
-function findById() {}
+
+//returns an object with the given id
+//the object is just the title, nothing else? - no value
+function findById(movies, givenID) {
+  for (const eachMovie of movies) {
+    if (eachMovie.imdbID === givenID) {
+      return eachMovie
+    }
+  }
+  return null;
+}
+ 
+findById(exampleMovies, "tt1979376");
 
 /**
  * filterByGenre()
