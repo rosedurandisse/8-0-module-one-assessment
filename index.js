@@ -197,6 +197,7 @@ function filterByGenre(movies, givenGenre) {
     return []
   }
   let genreFilter = [];
+  //create a new string to update the string to reflect the strings in the genre array
   let givenGenreCase = givenGenre.charAt(0).toUpperCase() + givenGenre.slice(1).toLowerCase();
   //loop the each movie and add a conditional that sees if the given genre is included in the genre array
   for (const eachMovie of movies) {
@@ -207,7 +208,7 @@ function filterByGenre(movies, givenGenre) {
   return genreFilter;
 }
 
-filterByGenre(exampleMovies, "MYSTERY")
+filterByGenre(exampleMovies, "")
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -231,7 +232,29 @@ filterByGenre(exampleMovies, "MYSTERY")
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+
+//returns all movie objects with the given year or less than the given year
+//the result is an array of the movie objects
+//movie released is movies[i].released
+//movie released year is movies[i].released(2)
+//turn the movie released property into an array
+// let releaseDateArray = exampleMovies[0].released.split(' ');
+// console.log(Number(releaseDateArray[2]));
+
+function getAllMoviesReleasedAtOrBeforeYear(movies, givenYear) {
+  let movieReleasedAtATime = [];
+  for (const eachMovie of movies) {
+    //change the release date into an array and grab the year element. element 2
+    let releaseDateArray = eachMovie.released.split(' ');
+    let releaseDateYear = releaseDateArray[2];
+    if (releaseDateYear <= givenYear) {
+      movieReleasedAtATime.push(eachMovie)
+    }
+  }
+  return movieReleasedAtATime;
+}
+
+
 
 /**
  * getBiggestBoxOfficeMovie()
@@ -244,6 +267,16 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  getBiggestBoxOfficeMovie(movies);
  *  //> "Incredibles 2"
  */
+
+//return the name of the movie with the highest box office amount
+//issue is that the box office is a string with a dollar sign and commas
+// take off the dollar sign by slice(1)
+
+let noDollarSign = exampleMovies[0].boxOffice.slice(1);
+let noCommas = noDollarSign.replace(/,/g, '');
+console.log(Number(noCommas));
+
+
 function getBiggestBoxOfficeMovie() {}
 
 // Do not change anything below this line.
