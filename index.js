@@ -276,6 +276,8 @@ let noDollarSign = exampleMovies[0].boxOffice.slice(1).replace(/,/g, '');
 // let noCommas = noDollarSign.replace(/,/g, '');
 // console.log(Number(noDollarSign));
 
+
+
 function getBiggestBoxOfficeMovie(movies) {
   if (movies.length === 0) {
     return null;
@@ -291,6 +293,26 @@ function getBiggestBoxOfficeMovie(movies) {
   return topGrossingMovie;
 }
 
+
+//same function, just with a helper function
+function transformDollarsStringToNumbers(value) {
+  let numberValue = Number(value.slice(1).replace(/,/g, ''));
+  return numberValue
+}
+
+function getBiggestBoxOfficeMovie2(movies) {
+  if (movies.length === 0) {
+    return null;
+  }
+  let highestBoxValue = transformDollarsStringToNumbers(movies[0].boxOffice);
+  let topGrossingMovie = movies[0].title;
+  for (let i = 0; i < movies.length; i++) {
+    if (transformDollarsStringToNumbers(movies[i].boxOffice) > highestBoxValue) {
+      topGrossingMovie = movies[i].title
+    }
+  }
+ return topGrossingMovie;
+}
 
 // Do not change anything below this line.
 module.exports = {
