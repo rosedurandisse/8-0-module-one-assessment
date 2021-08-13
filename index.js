@@ -156,8 +156,7 @@ function countByRating(movies) {
     };
  */
 
-//returns an object with the given id
-//the object is just the title, nothing else? - no value
+//returns the movie object that matches the given id
 function findById(movies, givenID) {
   for (const eachMovie of movies) {
     if (eachMovie.imdbID === givenID) {
@@ -167,7 +166,7 @@ function findById(movies, givenID) {
   return null;
 }
  
-findById(exampleMovies, "tt1979376");
+// findById(exampleMovies, "tt1979376");
 
 /**
  * filterByGenre()
@@ -189,7 +188,26 @@ findById(exampleMovies, "tt1979376");
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+
+//returns a movie object that matches the given genre
+//genres in each movie object is an array
+//so you have to see if the given genre is included in the movie[i].genre    
+function filterByGenre(movies, givenGenre) {
+  if (movies.length === 0) {
+    return []
+  }
+  let genreFilter = [];
+  let givenGenreCase = givenGenre.charAt(0).toUpperCase() + givenGenre.slice(1).toLowerCase();
+  //loop the each movie and add a conditional that sees if the given genre is included in the genre array
+  for (const eachMovie of movies) {
+    if (eachMovie.genre.includes(givenGenreCase)){
+      genreFilter.push(eachMovie);
+    }
+  }
+  return genreFilter;
+}
+
+filterByGenre(exampleMovies, "MYSTERY")
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
