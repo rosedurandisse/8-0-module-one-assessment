@@ -55,7 +55,22 @@ function getAllMovieTitles(movies) {
  *  getHighestMetascore(movies);
  *  //> 96
  */
-function getHighestMetascore() {}
+//function gives me the highest metascore of the movie array
+//there needs to be a default value of movies[0].metascore
+//if there is a metascore that is higher than it should be the new default value
+//thing to note is that the metascore value is a string
+function getHighestMetascore(movies) {
+  let highestMetaScore = movies[0].metascore;
+  //loop through the array to compare metascores
+  for (let i = 0; i < movies.length; i++) {
+    if (Number(movies[i].metascore > Number(highestMetaScore))) {
+      highestMetaScore = movies[i].metascore
+    }
+  }
+  return highestMetaScore;
+}
+
+console.log(getHighestMetascore(exampleMovies));
 
 /**
  * getAverageIMDBRating()
